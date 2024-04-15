@@ -1,13 +1,13 @@
 1. 안드로이드 스튜디오 버튼 만들기
 `New Project...` 로 새로 시작
 <p align="center">
- <img src = "./images/1.png"  height="900">
+ <img src = "./images/1.png">
 </p>
 
 2. `Empty Activity` 선택
 
 <p align="center">
- <img src = "./images/2.png"  height="900">
+ <img src = "./images/2.png">
 </p>
 
 3. 프로젝트 설정
