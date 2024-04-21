@@ -4,35 +4,70 @@
 레이아웃에서 가장 많이 사용되는 것 : 리니어레이아웃
 리니어 레이아웃은 선형 레이아웃이라고도 함
 
-*레이아웃의 대표적인 속성.
-레이아웃에만 적용되는 것은 아니지만 레이아웃에서 자주 사용되는 속성.
+## 안드로이드 레이아웃 종류
 
-- orientation
-- gravity
-- padding
-- layout_weight : 레이아웃이 전체화면에서 차지하는 공간의 가중값을 설정
-- baselineAlinged
+1. **LinearLayout (리니어 레이아웃)**: 위젯들을 수평이나 수직으로 일렬로 배치합니다. 이 레이아웃은 간단한 리스트 디자인이나 수직/수평 정렬이 필요할 때 유용합니다.
+
+2. **RelativeLayout (렐러티브 레이아웃)**: 위젯들을 서로 대비하여 배치합니다. 예를 들어, 한 위젯이 다른 위젯의 오른쪽에 위치하게 할 수 있습니다. 복잡한 배치가 필요할 때 유용합니다.
+
+3. **TableLayout (테이블 레이아웃)**: 위젯들을 행과 열 구조로 정렬합니다. 각 행은 여러 개의 셀을 가질 수 있으며, 각 셀은 하나의 위젯을 포함할 수 있습니다.
+
+4. **GridLayout (그리드 레이아웃)**: 위젯들을 격자 패턴으로 배치합니다. 테이블 레이아웃보다 유연하며 복잡한 격자 형태의 배치를 쉽게 구성할 수 있습니다.
+
+5. **FrameLayout (프레임 레이아웃)**: 위젯을 겹쳐서 배치할 수 있습니다. 이 레이아웃은 일반적으로 하나의 자식 뷰를 담거나, 여러 자식 뷰를 겹치게 할 때 사용합니다.
+
+### 레이아웃 속성
+
+- **orientation**: 리니어 레이아웃에서 사용되며, 위젯들의 배치 방향(수평 or 수직)을 결정합니다.
+- **gravity**: 레이아웃 내의 위젯들의 정렬 방법을 결정합니다.
+- **padding**: 레이아웃 경계와 내부 위젯 간의 간격을 설정합니다.
+- **layout_weight**: 리니어 레이아웃에서 사용되며, 위젯들이 차지하는 공간의 비율을 결정합니다. 더 큰 weight 값을 가진 위젯은 더 많은 공간을 차지합니다.
+- **baselineAligned**: 리니어 레이아웃에서 사용되며, 자식들의 베이스라인을 맞춤 여부를 결정합니다.
 
 
-레이아웃의 종류
-
-- 리니어레이아웃 (선형 레이아웃)
-
-- 렐러티브레이아웃 (상대 레이아웃)
-
-- 테이블레이아웃
-
-- 그리드 레이아웃
-
-- 프레임 레이아웃 : 중복 겹치는 형태
 
 ---
 ### 1. 기본 레이아웃의 형태
 
-1. orientation
-vertical : 수직
+#### `LinearLayout`
+1. orientation : vertical(수직)
 
-#### `소스`
+`android:orientation="vertical"` 속성은 주로 `LinearLayout`에서 사용되며, 이 속성을 설정하면 `LinearLayout` 안에 포함된 자식 요소들을 세로 방향(위에서 아래로)으로 순서대로 배치합니다.
+
+
+`lyout05_linearlayout_vertical1`
+```xml
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" > <!-- 세로 방향으로 자식 뷰들을 배치 -->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="First Text View"
+        android:gravity="center" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Click Me" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Text Here" />
+
+</LinearLayout>
+```
+![alt text](image-25.png)
+
+위XMl 레이아웃에서 `LinearLayout` 은 `orientation` 속성을 `"Vertical"로 설정했으므로
+세로 방향으로 자식요소가 배치된다. 각 요소는 먼저 생성된 순으로 TextView, Button, EditText가 위에서 아래로 순서대로 배치가 된다.
+
+`lyout05_linearlayout_vertical2`
+
 - `android:orientation="vertical"`
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -121,25 +156,55 @@ vertical : 수직
 
 ![alt text](image-1.png)
 
+자식 요소들이 세로가 아닌 가로로 배치되는데 `wrap_content`로 width가 잡혀있기 때문에 요소 크기 만큼 가로로 배치된다.
 
-스위치가 가려져 안보일수도있다.
+화면 크기에 따라 스위치가 가려져 안보일수도있다.
 
-Button 을 
-`android:layout_width="match_parent"` 으로 해보자
-
-![alt text](image-2.png)
-
-이런 문제로 대체로 vertical로 설정해서 사용함
 
 ---
 
 #### 2. grativity 와 layout_gravity 속성
 
 
+안드로이드 레이아웃에서 `gravity`와 `layout_gravity` 속성은 요소들의 정렬을 결정하는 중요한 속성입니다. 이 두 속성은 비슷하게 들릴 수 있지만, 적용 대상과 효과가 다릅니다.
+
+#### 1. `gravity`
+`gravity` 속성은 주로 `TextView`, `Button`, `LinearLayout` 등의 뷰 또는 뷰 그룹에서 사용됩니다. 이 속성은 뷰 내의 내용(텍스트, 아이콘 등)이 어떻게 정렬될지를 결정합니다. 예를 들어, `TextView` 내의 텍스트가 중앙, 왼쪽, 오른쪽, 위쪽, 아래쪽 등 어느 방향에 위치할지를 지정할 수 있습니다.
+
+```xml
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Centered Text"
+    android:gravity="center" /> <!-- 텍스트를 뷰의 중앙에 배치 -->
+```
+
+#### 2. `layout_gravity`
+`layout_gravity` 속성은 뷰가 자신의 부모 뷰 내에서 어떻게 정렬될지를 결정합니다. 이 속성은 주로 `LinearLayout`이나 `FrameLayout` 같은 뷰 그룹 내부의 자식 뷰에 적용됩니다. 예를 들어, `Button`이 `LinearLayout` 내에서 오른쪽 끝에 위치하도록 하려면 `layout_gravity`를 사용합니다.
+
+```xml
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Right Aligned Button"
+        android:layout_gravity="right" /> <!-- 버튼을 부모 레이아웃의 오른쪽에 배치 -->
+</LinearLayout>
+```
+
+### 주의사항
+- `gravity`는 해당 뷰 내부에서 작동하는 반면, `layout_gravity`는 해당 뷰를 포함하는 부모 뷰 안에서 작동합니다.
+- 모든 레이아웃 타입에서 `layout_gravity`가 작동하는 것은 아닙니다. 예를 들어, `RelativeLayout`에서는 `layout_gravity`가 효과가 없으며, 다른 방식으로 뷰를 정렬해야 합니다.
+
+
+
+1. 우측 아래로 위치
 `android:gravity="right|bottom"`
 
-
-아래쪽 오른쪽으로 간다.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -157,10 +222,6 @@ Button 을
 
 ![alt text](image-4.png)
 
-
-설명
-- gravity 속성이 자신에게 포함된 자식(주로 위젯) 을 어디에 위치시킬지를 결정한다면,
-- layout_gravity 속성은 자신의 위치를 부모의 어디에 
 
 
 
@@ -302,6 +363,7 @@ Button 을
 
 </LinearLayout>
 ```
+
 ![alt text](image-7.png)
 
 
@@ -457,14 +519,67 @@ Button 을
 
 ![alt text](image-11.png)
 
+. 각 `LinearLayout`의 `layout_height`는 `0dp`로 설정되어 있고, `layout_weight` 속성을 통해 화면 공간을 동적으로 분배
+
+### 레이아웃 분석:
+- **최상위 LinearLayout**:
+  - `android:orientation="vertical"`: 자식 뷰들을 수직으로 배치합니다.
+  - `android:layout_width="match_parent"`와 `android:layout_height="match_parent"`: 레이아웃이 부모(일반적으로 화면)의 전체 크기에 맞춰집니다.
+
+- **첫 번째 내부 LinearLayout**:
+  - `android:layout_weight="1"`: 사용 가능한 공간의 1부를 차지합니다.
+  - `android:gravity="center"`: 내부의 버튼들을 중앙에 위치시킵니다.
+  - `android:orientation="vertical"`: 내부 요소를 세로로 배치합니다.
+
+- **두 번째 내부 LinearLayout**:
+  - `android:layout_weight="2"`: 사용 가능한 공간의 2부를 차지하여, 이 섹션은 첫 번째와 세 번째 섹션보다 두 배 큰 공간을 차지합니다.
+  - `android:background="#00FF00"`: 배경색을 녹색으로 설정합니다.
+  - `android:gravity="center"`: 내부의 버튼들을 중앙에 위치시킵니다.
+  - `android:orientation="horizontal"`: 버튼들을 가로로 배치합니다.
+
+- **세 번째 내부 LinearLayout**:
+  - `android:layout_weight="1"`: 사용 가능한 공간의 1부를 차지합니다.
+  - `android:background="#0000FF"`: 배경색을 파란색으로 설정합니다.
+  - `android:gravity="center"`: 내부의 버튼들을 중앙에 위치시킵니다.
+  - `android:orientation="vertical"`: 내부 요소를 세로로 배치합니다.
+
+### 주요 특징 및 고려 사항:
+- `layout_height="0dp"`와 `layout_weight` 조합을 사용하여 부모 레이아웃 내에서 동적으로 높이를 분배합니다. 이 방법은 화면 크기가 다양한 장치에서 일관된 사용자 경험을 제공합니다.
+- 두 번째 섹션의 `orientation`이 `horizontal`로 설정되어 있어, 이 섹션의 버튼들만 가로로 나란히 배치됩니다.
+- 각 섹션의 `gravity="center"` 속성은 모든 버튼이 그들의 각각의 레이아웃 중앙에 위치하도록 보장합니다.
+
+이 구조는 유연하며 다양한 화면 크기와 방향에 적응할 수 있도록 설계되었습니다. 버튼의 배치와 크기가 각 섹션의 `layout_weight`에 따라 조정되므로, 디자인이 의도한 대로 표현될 수 있습니다.
+
+### layout_weight 에 대해서
+
+안드로이드 스튜디오에서 레이아웃 정렬할 은 많다.
+xml파일에서 코드를 작성해서 아이템들을 정렬하는데 layout_weight를 사용하면 아주 편리하다.
+
+#### layout_weight
+부모의 width 또는 height 를 자식들이 비율에 따라 나누어 가지는 것을 말한다.
+
+
+#### 사용법
+
+1. 자식의 width / height 중 **비율로 나누어 가질 애를 0dp** 로 설정한다.
+
+2. 자식에 **android:layout_weight="여기 비율 넣기"로 비율 설정**하면 끝이다. 
+
+
+부모의 width/height는 주고 싶은 만큼 주면 된다.
+
+
+e.g) 모든 자식의 weight를 `android:layout_weight="1"` 로 설정했다면 다 같은 비율을 가질 것이고 
+
+한 자식을 "2"로 했다면 이 아이템은 더 큰 비율을 가질 것이다. 
 
 ---
 
-실습
+#### 실습
 리니어 레이아웃으로 다음과 같은 화면을 XML로 작성.
-* 리니어레이아웃의 orientation 속성을 vertical 로 설정.
-버튼 3개를 생성하고 layout_width 는 110dp로,
-layout_height는 100dp로 함.
+* 리니어레이아웃의 `orientation 속성을 vertical` 로 설정.
+버튼 3개를 생성하고 `layout_width 는 110dp`로,
+`layout_height는 100dp`로 함.
 
 
 ```xml
@@ -502,7 +617,7 @@ layout_height는 100dp로 함.
 
 ---
 ## 기타 레이아웃
-레이아웃에는 리니어 레이아우
+레이아웃에는 리니어 레이아웃
 
 ### 1. 렐러티브 레이아웃
 레이아웃 내부에 포함된 위젯을 상대적인 위치로 배치.
