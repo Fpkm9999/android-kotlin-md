@@ -136,7 +136,7 @@ java.lang.Object
 </LinearLayout>
 ```
 <p align="center">
- <img src = "./images/03.png">
+ <img src = "./images/03.png" width="50%" height="50%">
 </p>
 
 ### 타임피커
@@ -187,12 +187,12 @@ java.lang.Object
 </LinearLayout>
 ```
 <p align="center">
- <img src = "./images/05.png">
+ <img src = "./images/05.png" width="50%" height="50%">
 </p>
 
 
 <p align="center">
- <img src = "./images/06.png">
+ <img src = "./images/06.png" width="50%" height="50%">
 </p>
 
 
@@ -467,17 +467,17 @@ class MainActivity2 : AppCompatActivity() {
 }
 ```
 <p align="center">
- <img src = "./images/07.png">
+ <img src = "./images/07.png" width="50%" height="50%">
 </p>
 
 <p align="center">
- <img src = "./images/08.png">
+ <img src = "./images/08.png" width="50%" height="50%"">
 </p>
 
 <p align="center">
- <img src = "./images/09.png">
+ <img src = "./images/09.png " width="50%" height="50%">
 </p>
 
 <p align="center">
- <img src = "./images/10.png">
+ <img src = "./images/10.png" width="50%" height="50%">
 </p>
