@@ -3,7 +3,7 @@
 텍스트뷰 1개, 에디트텍스트 1개, 버튼 2개로 구성
 
 <p align="center">
-  <img src="./images1/01.png">
+  <img src="./images1/01.png" width="50%" height="50%">
 </p>
 
 
@@ -55,7 +55,7 @@
 </LinearLayout>
 ```
 <p align="center">
-  <img src="./images1/02.png">
+  <img src="./images1/02.png" width="50%" height="50%">
 </p>
 
 ---
@@ -103,5 +103,5 @@
 </RelativeLayout>
 ```
 <p align="center">
-  <img src="./images1/03.png">
+  <img src="./images1/03.png" width="50%" height="50%">
 </p>
